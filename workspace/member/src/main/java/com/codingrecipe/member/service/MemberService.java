@@ -94,4 +94,17 @@ public class MemberService {
 
         memberRepository.deleteById(id);
     }
+
+    public String emailCheck(String memberEmail) {
+
+        Optional<MemberEntity> optionalMemberEntity = memberRepository.findByMemberEmail(memberEmail);
+
+        if (optionalMemberEntity.isPresent()) {
+            // 조회결과가 있다 -> 사용 할 수 없다.
+            return null;
+        } else {
+            // 조회결과가 없다 -> 사용 할 수 있다.
+            return "ok";
+        }
+    }
 }
